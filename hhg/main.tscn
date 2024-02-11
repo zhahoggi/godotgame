@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://c174vsveho0aw"]
+
+[ext_resource type="PackedScene" uid="uid://d2kbbcm83okv5" path="res://spawn.tscn" id="1_wpy2f"]
+[ext_resource type="PackedScene" uid="uid://c4ejl2uiu7gin" path="res://camera.tscn" id="2_tlj21"]
+[ext_resource type="Script" path="res://camera.gd" id="3_quwr6"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_akm33"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_t8i74"]
+
+[node name="world" type="Node3D"]
+
+[node name="floor" type="MeshInstance3D" parent="."]
+transform = Transform3D(15, 0, 0, 0, 3.035, 0, 0, 0, 14.972, 0, 0, 0)
+mesh = SubResource("PlaneMesh_akm33")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="floor"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="floor/StaticBody3D"]
+transform = Transform3D(2.00635, 0, 0, 0, 1, 0, 0, 0, 2.03512, 0, 0, 0)
+shape = SubResource("BoxShape3D_t8i74")
+
+[node name="spawner" parent="." instance=ExtResource("1_wpy2f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, -11)
+
+[node name="camera" parent="." instance=ExtResource("2_tlj21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.266, 0.5, -4.182)
+script = ExtResource("3_quwr6")
+
+[node name="Camera3D" type="Camera3D" parent="camera"]
+transform = Transform3D(1, 0, 0, 0, 0.924799, 0.380457, 0, -0.380457, 0.924799, 0, 1.40135, 2.5164)
+current = true
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.866662, 0.498896, 0, -0.498896, 0.866662, -0.120086, 3.51153, 9.48487)
